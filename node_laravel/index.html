@@ -1,0 +1,35 @@
+<!-- 客户端 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Node js</title>
+</head>
+<body>
+	<!-- <h1>hello world!!!!!!!!</h1> -->
+	
+	<ul id="messages"></ul>
+	<form>
+		<input type="text" autocomplete="off" id="message" name="">
+		<button>Send</button>
+	</form>
+	
+	<script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		var socket = io();
+
+		$('form').submit(function(){
+			socket.emit('chat.message',$('#message').val());
+			$('#message').val('');
+			return false;
+		});
+
+		socket.on('chat.message', function(message) {
+			// event.preventDefault();
+			/* Act on the event */
+			$('#messages').append($('<li>').text(message));
+		});
+	</script>
+</body>
+</html>
