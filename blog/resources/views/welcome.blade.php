@@ -17,7 +17,7 @@
              <li v-for="user in users">@{{user}}</li>
          </ul>
 
-         <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
+         <script src="https://cdn.bootcss.com/vue/1.0.4/vue.min.js"></script>
          <script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.js"></script>
          <script>
              var socket = io('demo.com:3001');//127.0.0.1

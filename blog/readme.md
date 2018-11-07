@@ -1,7 +1,9 @@
 *2018.11.07*
 laravel + redis + socket
 在浏览器中2个网页之间相互通信的demo
-
+其中vue的版本最好是1.0.4的版本，
+`<script src="https://cdn.bootcss.com/vue/1.0.4/vue.min.js"></script>`
+现在vue之类的还没有多熟练，所以先用这个版本就可以出来，用最新的版本，是没有解析出来。以此记录
 
 
 
