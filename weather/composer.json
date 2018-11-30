@@ -1,0 +1,19 @@
+{
+    "name": "wandx\/weather",
+    "description": "A weather SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wandx",
+            "email": "wp_0357@163.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wandx\\Weather\\": "./src/"
+        }
+    }
+}
