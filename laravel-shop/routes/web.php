@@ -24,6 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //开始
     Route::group(['middleware' => 'email_verified'], function () {
-       
+
     });
 });
