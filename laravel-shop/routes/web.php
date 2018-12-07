@@ -25,5 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
     //开始
     Route::group(['middleware' => 'email_verified'], function () {
         Route::get('user_addresses','UserAddressesController@index')->name('user_addresses.index');
+        Route::get('user_addresses/create','UserAddressesController@create')->name('user_addresses.create');
     });
 });

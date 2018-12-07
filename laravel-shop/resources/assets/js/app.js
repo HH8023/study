@@ -17,6 +17,9 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+//此处需在引入vue之后引入
+require('./components/SelectDistrict');
+
 const app = new Vue({
     el: '#app'
 });
