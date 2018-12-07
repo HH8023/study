@@ -19,6 +19,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 //此处需在引入vue之后引入
 require('./components/SelectDistrict');
+require('./components/UserAddressesCreateAndEdit');
 
 const app = new Vue({
     el: '#app'
