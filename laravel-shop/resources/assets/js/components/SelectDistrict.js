@@ -4,7 +4,7 @@ const addressData = require('china-area-data/v3/data');
 import _ from 'lodash';
 
 //注册一个名为 select-distruct的vue组件
-Vue.component('select-district',{
+Vue.component('select-district', {
     //定义组件的属性
     props: {
         //用来初始化省市区的值，在编辑时会用到
@@ -57,7 +57,7 @@ Vue.component('select-district',{
         //当选择的区发生改变时触发
         districtId() {
             //触发一个名为change的vue事件，事件的值就是当前选中的省市区名称，格式为数组
-            this.$emit('change',[this.provinces[this.provinceId], this.cities[this.cityId], this.districts[this.districtId]]);
+            this.$emit('change', [this.provinces[this.provinceId], this.cities[this.cityId], this.districts[this.districtId]]);
         },
     },
     //组件初始化时会调用这个方法
@@ -75,7 +75,7 @@ Vue.component('select-district',{
                 return;
             }
             //从当前省列表中找到与数组第一个元素同名的项的索引
-            const provinceId = _.findKey(this.provinces,o => 0 === value[0]);
+            const provinceId = _.findKey(this.provinces, o => o === value[0]);
             //没找到，清空省的值
             if (!provinceId) {
                 this.provinceId = '';
