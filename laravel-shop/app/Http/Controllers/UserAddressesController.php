@@ -44,7 +44,6 @@ class UserAddressesController extends Controller
         $this->authorize('own', $user_address);
 //        dd($user_address->province);
         return view('user_addresses.create_and_edit', ['address' => $user_address]);
-//        return view('user_addresses.create_and_edit', ['address' => $user_address]);
     }
 
     //更新操作
