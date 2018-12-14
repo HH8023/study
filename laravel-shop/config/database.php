@@ -52,6 +52,12 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'dump' => [
+                'excludeTables' => [
+                    'table_to_exclude_from_backup',
+                    'another_table_to_exclude'
+                ]
+             ]
         ],
 
         'pgsql' => [

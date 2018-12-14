@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'PagesController@root')->name('root');
+//Route::get('/', 'PagesController@root')->name('root');
+Route::redirect('/','/products')->name('root');
+Route::get('products','ProductsController@index')->name('products.index');
 
 Auth::routes();
 
@@ -35,7 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
+        Route::get('backupList','BackupController@backupList')->name('backupList'); //数据库备份列表
+        Route::get('dataBackup','BackupController@dataBackup')->name('dataBackup');//数据库备份
 
     });
 });
