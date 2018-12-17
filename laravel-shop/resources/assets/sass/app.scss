@@ -57,7 +57,7 @@ body {
 }
 
 
-.products-index-page {
+.products-index-page, .products-favorites-page {
   .pagination {
     margin-right: 5px;
   }
@@ -105,7 +105,7 @@ body {
             color: #38b;
             font-weight: bold;
           }
-          & > div {
+          &>div {
             &:first-child {
               border-right: 1px solid #eee;
             }
@@ -119,9 +119,9 @@ body {
     }
   }
   .search-form {
-    padding:0 20px 10px;
+    padding: 0 20px 10px;
     margin-bottom: 10px;
-    border-bottom:1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
 }
 

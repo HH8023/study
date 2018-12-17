@@ -41,6 +41,12 @@ class ProductsController extends Controller
         $products = $builder->paginate(16);
 //        $products = Product::query()->where('on_sale',true)->paginate(16);
 
-        return view('products.index',['products' => $products]);
+        return view('products.index', [
+            'products' => $products,
+            'filters' => [
+                'search' => $search,
+                'order' => $order,
+            ],
+        ]);
     }
 }
