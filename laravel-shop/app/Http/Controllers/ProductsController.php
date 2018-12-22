@@ -62,4 +62,23 @@ class ProductsController extends Controller
 
         return view('products.show',['product' => $product]);
     }
+
+    //收藏接口
+    public function favor(Product $product,Request $request)
+    {
+        $user = $request->user();
+        if ($user->favoriteProducts()->find($product->id)) {
+            return [];
+        }
+        $user->favoriteProducts()->attach($product);
+        return [];
+    }
+
+    //取消收藏接口
+    public function disfavor(Product $product,Request $request)
+    {
+        $user = $request->user();
+        $user->favoriteProducts()->detch($product);
+        return [];
+    }
 }
