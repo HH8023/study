@@ -59,8 +59,16 @@ class ProductsController extends Controller
         if (!$product->on_sale) {
             throw new InvalidRequestException('商品未上架');
         }
+        $favored = false;
 
-        return view('products.show',['product' => $product]);
+        //用户未登录时返回的是null，已登录时返回的是对应的用户对象
+        if ($user = $request->user()) {
+            //从当前用户已收藏的商品中搜索id为当前商品id的商品
+            //boolval()函数用于把值转为布尔值
+            $favored = boolval($user->favoriteProducts()->find($product->id));
+        }
+
+        return view('products.show',['product' => $product,'favored' => $favored]);
     }
 
     //收藏接口
