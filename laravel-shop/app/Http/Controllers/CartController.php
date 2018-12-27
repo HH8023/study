@@ -33,4 +33,12 @@ class CartController extends Controller
 
         return [];
     }
+
+    //查看购物车中的商品
+    public function index(Request $request)
+    {
+        $cartItems = $request->user()->cartItems()->with(['productSku.product'])->get();
+
+        return view('cart.index',['cartItems' => $cartItems]);
+    }
 }
