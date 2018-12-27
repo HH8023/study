@@ -56,5 +56,49 @@
     </div>
 </div>
 
+@endsection
 
+@section('scriptAfterJs')
+    <script>
+        $(document).ready(function () {
+            //监听 移除 按钮的点击事件
+            $('.btn-remove').click(function () {
+                //$(this) 可以获取到当前点击的移除按钮的jquery对象
+                //closest() 方法可以获取到匹配选择器的第一个祖先元素，在这里就是当前点击移除按钮之上的<tr>标签
+                //data('id')方法可以获取到我们之前设置的data-id属性的值，也就是对应的SKU id
+                var id = $(this).closest('tr').data('id');
+                swal({
+                    title: '确认要将该商品移除？',
+                    icon: 'warning',
+                    buttons: ['取消','确定'],
+                    dangerMode: true,
+                })
+                    .then(function (willDelete) {
+                        //用户点击  确定  按钮，willDelete的值就会使true，否则为false
+                        if(!willDelete) {
+                            return;
+                        }
+
+                        axios.delete('/cart/' + id)
+                            .then(function () {
+                                location.reload();
+                            })
+                    });
+            });
+
+            //监听 全选/取消全选  单选框的变更事件
+            $('#select-all').change(function () {
+                //获取单选框的选中状态
+                //prop()方法可以知道标签中是否包含某个属性,当单选框被勾选时，对应的标签机会增加一个checked的属性
+                var checked = $(this).prop('checked');
+                //获取所有name= select 并且不带有disabled属性的勾选框
+                //对于已经下架的商品我们不希望对应的勾选框会被选中，因此我们需要加上 :not([disabled])这个条件
+                $('input[name=select][type=checkbox]:not([disabled])').each(function () {
+                    //将其勾选状态设为与目标单选框一致
+                    $(this).prop('checked', checked);
+                });
+            });
+
+        });
+    </script>
 @endsection

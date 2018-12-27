@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');  //收藏商品列表
         Route::post('cart', 'CartController@add')->name('cart.add'); //添加商品到购物车
         Route::get('cart','CartController@index')->name('cart.index');//查看购物车商品
+        Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
 
 
 
