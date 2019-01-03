@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('cart','CartController@index')->name('cart.index');//查看购物车商品
         Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
         Route::post('orders', 'OrdersController@store')->name('orders.store');//购物车下单
+        Route::get('orders', 'OrdersController@index')->name('orders.index');//用户订单列表
 
 
 

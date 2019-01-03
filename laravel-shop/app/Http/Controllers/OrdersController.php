@@ -25,13 +25,13 @@ class OrdersController extends Controller
             $address->update(['last_used_at' => Carbon::now()]);
             //创建一个订单
             $order = new Order([
-                'address'      => [  //将地址信息放入订单中
-                    'address'      => $address->full_address,
-                    'zip'          => $address->zip,
+                'address' => [  //将地址信息放入订单中
+                    'address' => $address->full_address,
+                    'zip' => $address->zip,
                     'contact_name' => $address->contact_name,
-                    'contact_phone'=> $address->contact_phone,
+                    'contact_phone' => $address->contact_phone,
                 ],
-                'remark'       => $request->input('remark'),
+                'remark' => $request->input('remark'),
                 'total_amount' => 0,
             ]);
             //订单关联到当前用户
@@ -40,12 +40,12 @@ class OrdersController extends Controller
             $order->save();
 
             $totalAmount = 0;
-            $items       = $request->input('items');
+            $items = $request->input('items');
             //遍历用户提交的SKU
             foreach ($items as $data) {
                 $sku = ProductSku::find($data['sku_id']);
                 //创建一个OrderItem并直接与当前订单关联
-                $item =$order->items()->make([
+                $item = $order->items()->make([
                     'amount' => $data['amount'],
                     'price' => $sku->price,
                 ]);
@@ -63,7 +63,7 @@ class OrdersController extends Controller
 
             //将下单的商品从购物车中移除
             $skuIds = collect($items)->pluck('sku_id');
-            $user->cartItems()->whereIn('product_sku_id',$skuIds)->delete();
+            $user->cartItems()->whereIn('product_sku_id', $skuIds)->delete();
 
             return $order;
         });
@@ -71,6 +71,19 @@ class OrdersController extends Controller
         $this->dispatch(new CloseOrder($order, config('app.order_ttl')));
 
         return $order;
+    }
+
+    //用户端的订单列表页
+    public function index(Request $request)
+    {
+        $orders = Order::query()
+            // 使用 with 方法预加载，避免N + 1问题
+            ->with(['items.product', 'items.productSku'])
+            ->where('user_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+
+        return view('orders.index', ['orders' => $orders]);
     }
 }
 
