@@ -13,7 +13,8 @@
         "overtrue/laravel-lang": "^3.0",
         "predis/predis": "^1.1",
         "spatie/db-dumper": "^2.12",
-        "spatie/laravel-backup": "^5.11"
+        "spatie/laravel-backup": "^5.11",
+        "yansongda/pay": "^2.6"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
