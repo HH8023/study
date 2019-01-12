@@ -13,7 +13,7 @@
 
 //Route::get('/', 'PagesController@root')->name('root');
 Route::redirect('/','/products')->name('root');
-Route::get('products','ProductsController@index')->name('products.index');  
+Route::get('products','ProductsController@index')->name('products.index');
 Route::get('alipay',function () {
     return app('alipay')->web([
         'out_trade_no' => time(),
@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('orders', 'OrdersController@index')->name('orders.index');//用户订单列表
         Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');//用户订单详情页
 
+        Route::get('payment/{order}/alipay','PaymentController@payByAlipay')->name('payment.alipay'); //订单的网页支付宝
 
 
         Route::get('backupList','BackupController@backupList')->name('backupList'); //数据库备份列表
