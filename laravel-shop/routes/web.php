@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('payment/{order}/alipay','PaymentController@payByAlipay')->name('payment.alipay'); //订单的网页支付宝
         Route::get('payment/alipay/return','PaymentController@alipayReturn')->name('payment.alipay.return');  //前端回调
+        Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');//微信支付
 
 
         Route::get('backupList','BackupController@backupList')->name('backupList'); //数据库备份列表
@@ -61,4 +62,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');//服务器端回调支付宝
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');//微信服务端回调
 
