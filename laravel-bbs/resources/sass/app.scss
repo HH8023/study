@@ -7,6 +7,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+//单独对一个文件进行导入
+//@import "node_modules/bootstrap/scss/_alert.scss";
 
 body {
   font-size: 14px;
