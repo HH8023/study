@@ -20,7 +20,8 @@ Route::get('/help','StaticPagesController@help')->name('help');
 Route::get('/about','StaticPagesController@about')->name('about');
 
 Route::get('signup','UsersController@create')->name('signup');  //注册路由
-
+Route::resource('users', 'UsersController');
+//Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 
 
 
