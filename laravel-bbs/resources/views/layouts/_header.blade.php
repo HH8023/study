@@ -1,18 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
+    <div class="container ">
         <a class="navbar-brand" href="{{ route('home') }}">wandx - BBS</a>
         <ul class="navbar-nav justify-content-end">
-            @if(Auth::check())
-                <li class="nav-item"><a href="#" class="nav-link">用户列表</a></li>
+            @if (Auth::check())
+                <li class="nav-item"><a class="nav-link" href="#">用户列表</a></li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="{{ route('users.show',Auth::user()) }}" class="dropdown-item">个人中心</a>
-                        <a href="#" class="dropdown-item">编辑资料</a>
+                        <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">个人中心</a>
+                        <a class="dropdown-item" href="#">编辑资料</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item" id="logout">
+                        <a class="dropdown-item" id="logout" href="#">
                             <form action="{{ route('logout') }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
@@ -22,8 +22,9 @@
                     </div>
                 </li>
             @else
-            <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">帮助</a></li>
-            <li class="nav-item" ><a class="nav-link" href="#">登录</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">帮助</a></li>
+                <li class="nav-item" ><a class="nav-link" href="{{ route('login') }}">登录</a></li>
+            @endif
         </ul>
     </div>
 </nav>
