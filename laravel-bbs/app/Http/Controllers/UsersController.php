@@ -8,6 +8,14 @@ use Auth;
 
 class UsersController extends Controller
 {
+    //构造  中间件方法：当一个类对象被创建之前该方法将会被调用
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except' => ['show','create','store']
+        ]);
+    }
+
     //新建
     public function create()
     {
